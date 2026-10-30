@@ -4,763 +4,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JESUN</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="JESUN — Builder, Editor, Programmer, Tech Grinder. I Don't Explain, I Show The Results. Find all my links in one place.">
+    <link rel="canonical" href="https://jesun08.github.io/">
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <!-- Share previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JESUN">
+    <meta property="og:description" content="I Don't Explain, I Show The Results. 💥">
+    <meta property="og:url" content="https://jesun08.github.io/">
+    <meta property="og:image" content="https://jesun08.github.io/icons/android-chrome-512x512.png">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0d0d1a">
-
-    <!-- iOS Support -->
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="JESUN">
 
-    <!-- FIXED FAVICON PATHS — matches actual filenames in /icons/ -->
-    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
-    <link rel="shortcut icon" href="/icons/favicon.ico">
-    <link rel="apple-touch-icon" href="/icons/android-chrome-192x192.png">
+    <!-- Icons (files in /icons/) -->
+    <link rel="icon" href="/icons/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg: #080810;
-            --bg2: #0e0e1c;
-            --bg3: #13132a;
-            --accent1: #c84bff;
-            --accent2: #ff4b8b;
-            --accent3: #4bf0ff;
-            --gold: #ffd166;
-            --text: #f0eeff;
-            --muted: #8888aa;
-            --card: rgba(255,255,255,0.04);
-            --border: rgba(255,255,255,0.07);
-            --glow1: rgba(200,75,255,0.15);
-            --glow2: rgba(255,75,139,0.15);
-        }
-
+        :root { --bg:#080810; --bg2:#0e0e1c; --bg3:#13132a; --accent1:#c84bff; --accent2:#ff4b8b; --accent3:#4bf0ff; --gold:#ffd166; --text:#f0eeff; --muted:#8888aa; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.07); --glow1:rgba(200,75,255,0.15); --glow2:rgba(255,75,139,0.15); --nav-bg:rgba(8,8,16,0.7); --soft:rgba(255,255,255,0.07); --soft2:rgba(255,255,255,0.05); --stats-bg:rgba(255,255,255,0.02); --shadow:none; --soc-bg:linear-gradient(135deg,rgba(200,75,255,0.22),rgba(255,75,139,0.22)); --soc-border:rgba(200,75,255,0.4); --soc-text:#fff; --soc-icon:rgba(255,255,255,0.14); --bday-bg:linear-gradient(135deg,rgba(200,75,255,0.12),rgba(255,75,139,0.12)); --bday-border:rgba(200,75,255,0.25); }
         html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* NOISE OVERLAY */
+        body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
 
-        /* ─── NOISE OVERLAY ─── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-        }
+        /* BG GLOW ORBS */
+        .orb { position:fixed; border-radius:50%; filter:blur(120px); pointer-events:none; z-index:0; }
+        .orb1 { width:600px; height:600px; background:var(--glow1); top:-200px; left:-150px; }
+        .orb2 { width:500px; height:500px; background:var(--glow2); bottom:-100px; right:-100px; }
+        .orb3 { width:300px; height:300px; background:rgba(75,240,255,0.08); top:40%; left:45%; }
 
-        /* ─── BG GLOW ORBS ─── */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .orb1 { width: 600px; height: 600px; background: var(--glow1); top: -200px; left: -150px; }
-        .orb2 { width: 500px; height: 500px; background: var(--glow2); bottom: -100px; right: -100px; }
-        .orb3 { width: 300px; height: 300px; background: rgba(75,240,255,0.08); top: 40%; left: 45%; }
+        /* NAV */
+        nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 60px; background:var(--nav-bg); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+        .nav-logo { flex-shrink:0; font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.02em; }
+        .nav-links { display:flex; gap:36px; list-style:none; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.92rem; font-weight:500; letter-spacing:0.03em; transition:color 0.2s; }
+        .nav-links a:hover { color:var(--text); }
+        .nav-right { display:flex; align-items:center; gap:16px; }
+        .theme-pills { flex-shrink:0; display:flex; gap:6px; background:var(--bg3); border:1px solid var(--border); border-radius:30px; padding:5px; }
+        .theme-pill { background:none; border:none; color:var(--muted); font-size:0.8rem; font-weight:600; padding:5px 14px; border-radius:20px; cursor:pointer; transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+        .theme-pill.active, .theme-pill:hover { background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; }
 
-        /* ─── NAV ─── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 60px;
-            background: rgba(8,8,16,0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--accent1), var(--accent2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 36px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.92rem;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--text); }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .theme-pills {
-            display: flex;
-            gap: 6px;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 5px;
-        }
-
-        .theme-pill {
-            background: none;
-            border: none;
-            color: var(--muted);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 5px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .theme-pill.active, .theme-pill:hover {
-            background: linear-gradient(90deg, var(--accent1), var(--accent2));
-            color: white;
-        }
-
-        /* ─── HERO ─── */
-        .hero {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 60px;
-            padding: 140px 60px 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-left { position: relative; }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(200,75,255,0.1);
-            border: 1px solid rgba(200,75,255,0.3);
-            color: var(--accent1);
-            font-size: 0.82rem;
-            font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 30px;
-            margin-bottom: 24px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .hero-tag span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent1); animation: blink 1.5s infinite; }
-
+        /* HERO */
+        .hero { position:relative; z-index:1; min-height:100vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:60px; padding:140px 60px 80px; max-width:1400px; margin:0 auto; }
+        .hero-left { position:relative; }
+        .hero-bio { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.2; letter-spacing:-0.01em; margin-bottom:20px; max-width:520px; }
+        .hero-bio .bio-text { background:linear-gradient(90deg,var(--gold),var(--accent2)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+        @media (max-width:900px) { .hero-bio { margin-left:auto; margin-right:auto; } }
+        .hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(200,75,255,0.1); border:1px solid rgba(200,75,255,0.3); color:var(--accent1); font-size:0.82rem; font-weight:600; padding:6px 16px; border-radius:30px; margin-bottom:24px; letter-spacing:0.08em; text-transform:uppercase; }
+        .hero-tag span { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent1); animation:blink 1.5s infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+        h1.hero-title { font-family:'Syne',sans-serif; font-size:clamp(3rem,5vw,5.5rem); font-weight:800; line-height:1.0; letter-spacing:-0.03em; margin-bottom:20px; }
+        .hero-title .name-gradient { background:linear-gradient(135deg,var(--accent1) 0%,var(--accent2) 50%,var(--gold) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block; }
+        .hero-sub { color:var(--muted); font-size:1.1rem; max-width:440px; margin-bottom:36px; line-height:1.7; }
+        .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+        .btn-primary { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:white; padding:14px 30px; border-radius:50px; font-weight:600; font-size:0.95rem; text-decoration:none; border:none; cursor:pointer; transition:all 0.3s; box-shadow:0 0 30px rgba(200,75,255,0.3); font-family:'DM Sans',sans-serif; }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 50px rgba(200,75,255,0.5); }
+        .btn-ghost { display:inline-flex; align-items:center; gap:10px; background:transparent; color:var(--text); padding:14px 30px; border-radius:50px; font-weight:600; font-size:0.95rem; text-decoration:none; border:1px solid var(--border); cursor:pointer; transition:all 0.3s; font-family:'DM Sans',sans-serif; }
+        .btn-ghost:hover { border-color:var(--accent1); color:var(--accent1); background:rgba(200,75,255,0.06); }
 
-        h1.hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 5vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.0;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
-        }
+        /* HERO RIGHT */
+        .hero-right { display:flex; flex-direction:column; align-items:center; gap:24px; }
+        .profile-ring-wrap { position:relative; width:260px; height:260px; }
+        .profile-ring { position:absolute; inset:-4px; border-radius:50%; background:conic-gradient(var(--accent1),var(--accent2),var(--accent3),var(--accent1)); animation:spinRing 4s linear infinite; }
+        @keyframes spinRing { to { transform:rotate(360deg); } }
+        .profile-ring-inner { position:absolute; inset:4px; border-radius:50%; background:var(--bg); }
+        .profile-avatar { position:absolute; inset:8px; border-radius:50%; background:linear-gradient(135deg,var(--accent1),var(--accent2)); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:2.8rem; font-weight:800; color:white; overflow:hidden; animation:floatAvatar 4s ease-in-out infinite; }
+        @keyframes floatAvatar { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .profile-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+        .hero-reaction-row { display:flex; gap:14px; }
+        .reaction-pill { display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--border); border-radius:50px; padding:10px 22px; cursor:pointer; transition:all 0.3s; font-weight:600; font-size:1rem; }
+        .reaction-pill:hover, .reaction-pill.reacted { border-color:rgba(200,75,255,0.4); background:rgba(200,75,255,0.08); transform:scale(1.05); }
+        .reaction-pill .count { color:var(--gold); font-size:1.1rem; }
 
-        .hero-title .name-gradient {
-            background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 50%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
+        /* STATS BAR */
+        .stats-bar { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--stats-bg); }
+        .stats-inner { max-width:1400px; margin:0 auto; padding:0 60px; display:grid; grid-template-columns:repeat(4,1fr); }
+        .stat-block { padding:36px 0; text-align:center; border-right:1px solid var(--border); position:relative; }
+        .stat-block:last-child { border-right:none; }
+        .stat-num { font-family:'Syne',sans-serif; font-size:2.6rem; font-weight:800; background:linear-gradient(135deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block; line-height:1; margin-bottom:8px; }
+        .stat-label { font-size:0.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; font-weight:500; }
+        .stat-bar-anim { position:absolute; bottom:0; left:20%; right:20%; height:2px; background:linear-gradient(90deg,transparent,var(--accent1),transparent); opacity:0; animation:statGlow 3s ease-in-out infinite; }
+        .stat-block:nth-child(2) .stat-bar-anim { animation-delay:0.5s; }
+        .stat-block:nth-child(3) .stat-bar-anim { animation-delay:1s; }
+        .stat-block:nth-child(4) .stat-bar-anim { animation-delay:1.5s; }
+        @keyframes statGlow { 0%,100%{opacity:0;transform:scaleX(0.5)} 50%{opacity:1;transform:scaleX(1)} }
 
-        .hero-sub {
-            color: var(--muted);
-            font-size: 1.1rem;
-            max-width: 440px;
-            margin-bottom: 36px;
-            line-height: 1.7;
-        }
+        /* SECTIONS */
+        .section { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:80px 60px; }
+        .section-label { display:inline-flex; align-items:center; gap:10px; font-size:0.78rem; font-weight:700; color:var(--accent1); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:14px; }
+        .section-label::before { content:''; display:block; width:24px; height:1px; background:var(--accent1); }
+        .section-heading { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:50px; }
+        .section-heading span { background:linear-gradient(135deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
-        .hero-actions {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--accent1), var(--accent2));
-            color: white;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 30px rgba(200,75,255,0.3);
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(200,75,255,0.5);
-        }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--text);
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--accent1);
-            color: var(--accent1);
-            background: rgba(200,75,255,0.06);
-        }
-
-        /* ─── HERO RIGHT ─── */
-        .hero-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .profile-ring-wrap {
-            position: relative;
-            width: 260px;
-            height: 260px;
-        }
-
-        .profile-ring {
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: conic-gradient(var(--accent1), var(--accent2), var(--accent3), var(--accent1));
-            animation: spinRing 4s linear infinite;
-        }
-
-        @keyframes spinRing { to { transform: rotate(360deg); } }
-
-        .profile-ring-inner {
-            position: absolute;
-            inset: 4px;
-            border-radius: 50%;
-            background: var(--bg);
-        }
-
-        .profile-avatar {
-            position: absolute;
-            inset: 8px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent1), var(--accent2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: white;
-            overflow: hidden;
-            animation: floatAvatar 4s ease-in-out infinite;
-        }
-
-        @keyframes floatAvatar {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* PWA icon used as profile image */
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .hero-reaction-row {
-            display: flex;
-            gap: 14px;
-        }
-
-        .reaction-pill {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 10px 22px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .reaction-pill:hover, .reaction-pill.reacted {
-            border-color: rgba(200,75,255,0.4);
-            background: rgba(200,75,255,0.08);
-            transform: scale(1.05);
-        }
-
-        .reaction-pill .count { color: var(--gold); font-size: 1.1rem; }
-
-        /* ─── STATS BAR ─── */
-        .stats-bar {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            background: rgba(255,255,255,0.02);
-        }
-
-        .stats-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 60px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .stat-block {
-            padding: 36px 0;
-            text-align: center;
-            border-right: 1px solid var(--border);
-            position: relative;
-        }
-
-        .stat-block:last-child { border-right: none; }
-
-        .stat-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent1), var(--accent2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-        }
-
-        .stat-bar-anim {
-            position: absolute;
-            bottom: 0; left: 20%; right: 20%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent1), transparent);
-            opacity: 0;
-            animation: statGlow 3s ease-in-out infinite;
-        }
-
-        .stat-block:nth-child(2) .stat-bar-anim { animation-delay: 0.5s; }
-        .stat-block:nth-child(3) .stat-bar-anim { animation-delay: 1s; }
-        .stat-block:nth-child(4) .stat-bar-anim { animation-delay: 1.5s; }
-
-        @keyframes statGlow {
-            0%,100%{opacity:0;transform:scaleX(0.5)}
-            50%{opacity:1;transform:scaleX(1)}
-        }
-
-        /* ─── SECTIONS ─── */
-        .section {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 60px;
-        }
-
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--accent1);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 14px;
-        }
-
-        .section-label::before {
-            content: '';
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: var(--accent1);
-        }
-
-        .section-heading {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 50px;
-        }
-
-        .section-heading span {
-            background: linear-gradient(135deg, var(--accent1), var(--accent2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* ─── BIRTHDAY BAND ─── */
-        .birthday-band {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .birthday-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 60px 60px;
-        }
-
-        .bday-card {
-            background: linear-gradient(135deg, rgba(200,75,255,0.12), rgba(255,75,139,0.12));
-            border: 1px solid rgba(200,75,255,0.25);
-            border-radius: 24px;
-            padding: 32px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .bday-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .bday-icon {
-            font-size: 2.5rem;
-            animation: bounce 1.5s ease-in-out infinite;
-        }
-
+        /* BIRTHDAY */
+        .birthday-band { position:relative; z-index:1; overflow:hidden; }
+        .birthday-inner { max-width:1400px; margin:0 auto; padding:0 60px 60px; }
+        .bday-card { background:var(--bday-bg); border:1px solid var(--bday-border); border-radius:24px; padding:32px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+        .bday-left { display:flex; align-items:center; gap:20px; }
+        .bday-icon { font-size:2.5rem; animation:bounce 1.5s ease-in-out infinite; }
         @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .bday-info h3 { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:var(--gold); margin-bottom:4px; }
+        .bday-info p { color:var(--muted); font-size:0.9rem; }
+        .bday-right { display:flex; gap:16px; }
+        .bday-stat { background:var(--soft2); border:1px solid var(--border); border-radius:16px; padding:16px 24px; text-align:center; min-width:110px; }
+        .bday-stat .val { font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:800; color:var(--accent3); }
+        .bday-stat .lbl { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; }
 
-        .bday-info h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 4px;
+        /* EMAILS */
+        .email-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+        .email-card { display:flex; align-items:stretch; background:var(--card); border:1px solid var(--border); border-radius:18px; transition:all 0.3s; overflow:hidden; }
+        .email-card:hover { border-color:rgba(200,75,255,0.45); background:rgba(200,75,255,0.07); transform:translateY(-2px); }
+        .email-main { flex:1; min-width:0; display:flex; align-items:center; padding:20px 0 20px 24px; text-decoration:none; color:inherit; }
+        .email-left { display:flex; align-items:center; gap:16px; min-width:0; }
+        .email-ico { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; background:var(--soft); flex-shrink:0; }
+        .email-type { font-weight:700; font-size:0.9rem; color:var(--text); margin-bottom:3px; }
+        .email-addr { font-size:0.85rem; color:var(--muted); word-break:break-all; }
+        .copy-btn { background:none; border:none; color:var(--muted); font-size:1rem; padding:0 24px; cursor:pointer; transition:all 0.2s; flex-shrink:0; }
+        .copy-btn:hover { color:var(--accent1); transform:scale(1.25); }
+
+        /* SOCIAL */
+        .social-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+        .social-card { display:flex; align-items:center; gap:12px; padding:18px 20px; border-radius:18px; text-decoration:none; color:var(--soc-text); font-weight:600; font-size:0.93rem; transition:all 0.3s; border:1px solid transparent; position:relative; overflow:hidden; }
+        .social-card.active { background:var(--soc-bg); border-color:var(--soc-border); }
+        .social-card.active:hover { color:#fff; background:linear-gradient(135deg,var(--accent1),var(--accent2)); border-color:transparent; transform:translateY(-3px); box-shadow:0 10px 30px rgba(200,75,255,0.35); }
+        .social-card.soon { background:rgba(255,255,255,0.03); border-color:var(--border); cursor:default; opacity:0.6; }
+        .social-card.soon:hover { opacity:0.8; }
+        .social-icon-wrap { width:36px; height:36px; border-radius:10px; background:var(--soc-icon); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+        .social-name { flex:1; }
+        .soon-tag { font-size:0.7rem; background:rgba(255,255,255,0.12); color:var(--muted); padding:2px 8px; border-radius:20px; font-weight:600; }
+
+        /* FOOTER */
+        footer { position:relative; z-index:1; border-top:1px solid var(--border); text-align:center; padding:30px 60px; color:var(--muted); font-size:0.87rem; }
+        footer span { background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700; }
+
+        /* TOAST */
+        .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(80px); background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:white; padding:14px 28px; border-radius:50px; font-weight:600; font-size:0.95rem; display:flex; align-items:center; gap:10px; z-index:9999; opacity:0; transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space:nowrap; box-shadow:0 10px 40px rgba(200,75,255,0.4); }
+        .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+        /* THEMES */
+        [data-theme="dark"] { --bg:#000000; --bg2:#000000; --bg3:#0b0b10; --accent1:#a855f7; --accent2:#ec4899; --accent3:#22d3ee; --card:rgba(255,255,255,0.06); --border:rgba(255,255,255,0.13); --nav-bg:rgba(0,0,0,0.88); --stats-bg:#050507; --soc-bg:linear-gradient(135deg,#36194c,#451a32); --soc-border:#6b2a8f; --bday-bg:#0a0a10; --bday-border:rgba(168,85,247,0.4); }
+        [data-theme="dark"] .orb { opacity:0.25; }
+        body[data-theme="dark"]::before { opacity:0; }
+
+        [data-theme="light"] { --bg:#f7f5ff; --bg2:#efecfb; --bg3:#e9e5fa; --accent1:#9333ea; --accent2:#db2777; --accent3:#0891b2; --gold:#b45309; --text:#1b1633; --muted:#5b5680; --card:#ffffff; --border:rgba(27,22,51,0.15); --nav-bg:rgba(247,245,255,0.9); --soft:rgba(147,51,234,0.1); --soft2:#ffffff; --stats-bg:#ffffff; --shadow:0 4px 18px rgba(60,30,120,0.1); --soc-bg:linear-gradient(135deg,#9333ea,#db2777); --soc-border:transparent; --soc-text:#ffffff; --soc-icon:rgba(255,255,255,0.22); --bday-bg:#ffffff; --bday-border:rgba(147,51,234,0.3); }
+        body[data-theme="light"]::before { opacity:0.05; }
+        [data-theme="light"] .orb1 { background:rgba(147,51,234,0.12); }
+        [data-theme="light"] .orb2 { background:rgba(219,39,119,0.1); }
+        .email-card, .reaction-pill, .bday-card, .bday-stat { box-shadow:var(--shadow); }
+
+        /* RESPONSIVE */
+        @media (max-width:1100px) { .social-grid { grid-template-columns:repeat(3,1fr); } }
+        @media (max-width:900px) {
+            nav { padding:16px 24px; }
+            .nav-links { display:none; }
+            .hero { grid-template-columns:1fr; padding:120px 24px 60px; text-align:center; }
+            .hero-right { order:-1; }
+            .hero-sub { margin:0 auto 36px; }
+            .hero-actions { justify-content:center; }
+            .stats-inner { grid-template-columns:repeat(2,1fr); }
+            .stat-block:nth-child(2) { border-right:none; }
+            .section { padding:60px 24px; }
+            .birthday-inner { padding-left:24px; padding-right:24px; }
+            .email-grid { grid-template-columns:1fr; }
+            .social-grid { grid-template-columns:repeat(2,1fr); }
+            .bday-card { flex-direction:column; }
+            footer { padding:24px; }
+        }
+        @media (max-width:500px) {
+            .social-grid { grid-template-columns:1fr; }
+            .stats-inner { grid-template-columns:1fr 1fr; }
+            .hero-reaction-row { flex-direction:column; align-items:center; }
         }
 
-        .bday-info p { color: var(--muted); font-size: 0.9rem; }
-
-        .bday-right {
-            display: flex;
-            gap: 16px;
+        @media (max-width:600px) {
+            .pl { display:none; }
+            .theme-pill { padding:6px 12px; font-size:1rem; }
+            .nav-logo { font-size:1.35rem; }
+            nav { gap:20px; }
         }
 
-        .bday-stat {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 16px 24px;
-            text-align: center;
-            min-width: 110px;
-        }
-
-        .bday-stat .val {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--accent3);
-        }
-
-        .bday-stat .lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-
-        /* ─── EMAIL SECTION ─── */
-        .email-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .email-card {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 20px 24px;
-            cursor: pointer;
-            transition: all 0.3s;
-            justify-content: space-between;
-        }
-
-        .email-card:hover {
-            border-color: rgba(200,75,255,0.35);
-            background: rgba(200,75,255,0.07);
-            transform: translateY(-2px);
-        }
-
-        .email-left { display: flex; align-items: center; gap: 16px; }
-
-        .email-ico {
-            width: 44px; height: 44px;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-            background: rgba(255,255,255,0.07);
-            flex-shrink: 0;
-        }
-
-        .email-type { font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 3px; }
-        .email-addr { font-size: 0.85rem; color: var(--muted); word-break: break-all; }
-
-        .copy-btn {
-            color: var(--muted);
-            font-size: 1rem;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-
-        .email-card:hover .copy-btn { color: var(--accent1); transform: scale(1.2); }
-
-        /* ─── SOCIAL GRID ─── */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-        }
-
-        .social-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 20px;
-            border-radius: 18px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            font-size: 0.93rem;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-card.active {
-            background: linear-gradient(135deg, rgba(200,75,255,0.15), rgba(255,75,139,0.15));
-            border-color: rgba(200,75,255,0.25);
-        }
-
-        .social-card.active:hover {
-            background: linear-gradient(135deg, var(--accent1), var(--accent2));
-            border-color: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(200,75,255,0.35);
-        }
-
-        .social-card.soon {
-            background: rgba(255,255,255,0.03);
-            border-color: var(--border);
-            cursor: default;
-            opacity: 0.6;
-        }
-
-        .social-card.soon:hover { opacity: 0.8; }
-
-        .social-icon-wrap {
-            width: 36px; height: 36px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.1);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .social-name { flex: 1; }
-
-        .soon-tag {
-            font-size: 0.7rem;
-            background: rgba(255,255,255,0.12);
-            color: var(--muted);
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        /* ─── COPY LINK BTN ─── */
-        .copy-link-wrap {
-            text-align: center;
-            padding: 0 60px 60px;
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            padding: 30px 60px;
-            color: var(--muted);
-            font-size: 0.87rem;
-        }
-
-        footer span {
-            background: linear-gradient(90deg, var(--accent1), var(--accent2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-
-        /* ─── TOAST ─── */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            background: linear-gradient(135deg, var(--accent1), var(--accent2));
-            color: white;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 9999;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-            white-space: nowrap;
-            box-shadow: 0 10px 40px rgba(200,75,255,0.4);
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* ─── THEME VARIANTS ─── */
-        [data-theme="dark"] {
-            --bg: #050508;
-            --bg2: #0a0a0f;
-            --bg3: #0f0f18;
-            --accent1: #a855f7;
-            --accent2: #ec4899;
-            --accent3: #22d3ee;
-        }
-
-        [data-theme="light"] {
-            --bg: #f4f3ff;
-            --bg2: #eeedf8;
-            --bg3: #e5e3f5;
-            --card: rgba(0,0,0,0.04);
-            --border: rgba(0,0,0,0.09);
-            --text: #1a1733;
-            --muted: #6b6890;
-        }
-
-        [data-theme="light"] body::before { opacity: 0.05; }
-        [data-theme="light"] .orb1 { background: rgba(200,75,255,0.08); }
-        [data-theme="light"] .orb2 { background: rgba(255,75,139,0.08); }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 1100px) {
-            .social-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 900px) {
-            nav { padding: 16px 24px; }
-            .nav-links { display: none; }
-            .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; text-align: center; }
-            .hero-right { order: -1; }
-            .hero-sub { margin: 0 auto 36px; }
-            .hero-actions { justify-content: center; }
-            .stats-inner { grid-template-columns: repeat(2, 1fr); }
-            .stat-block:nth-child(2) { border-right: none; }
-            .section { padding: 60px 24px; }
-            .birthday-inner, .copy-link-wrap { padding-left: 24px; padding-right: 24px; }
-            .email-grid { grid-template-columns: 1fr; }
-            .social-grid { grid-template-columns: repeat(2, 1fr); }
-            .bday-card { flex-direction: column; }
-            footer { padding: 24px; }
-        }
-
-        @media (max-width: 500px) {
-            .social-grid { grid-template-columns: 1fr; }
-            .stats-inner { grid-template-columns: 1fr 1fr; }
-            .hero-reaction-row { flex-direction: column; align-items: center; }
-        }
-
-        /* ─── ANIMATIONS ─── */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* ANIMATIONS */
+        .fade-in { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity:1; transform:translateY(0); }
     </style>
-<meta name="google-site-verification" content="tH4dL0CYU0L0qKtL5JTm_g02K8FAeQJ_-WZa5xK1Q6M" />
+    <meta name="google-site-verification" content="tH4dL0CYU0L0qKtL5JTm_g02K8FAeQJ_-WZa5xK1Q6M" />
 </head>
 <body data-theme="default">
 
-    <!-- BG ORBS -->
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
     <div class="orb orb3"></div>
@@ -776,9 +222,9 @@
         </ul>
         <div class="nav-right">
             <div class="theme-pills">
-                <button class="theme-pill active" data-t="default">🌙 Default</button>
-                <button class="theme-pill" data-t="dark">🌚 Dark</button>
-                <button class="theme-pill" data-t="light">☀️ Light</button>
+                <button class="theme-pill active" data-t="default">🌙<span class="pl"> Default</span></button>
+                <button class="theme-pill" data-t="dark">🌚<span class="pl"> Dark</span></button>
+                <button class="theme-pill" data-t="light">☀️<span class="pl"> Light</span></button>
             </div>
         </div>
     </nav>
@@ -786,12 +232,13 @@
     <!-- HERO -->
     <section class="hero" id="about">
         <div class="hero-left fade-in">
+            <div class="hero-bio"><span class="bio-text">I Don't Explain, I Show The Results.</span> 💥</div>
             <div class="hero-tag"><span></span> Builder. Editor. Programmer. Tech Grinder</div>
             <h1 class="hero-title">
                 Hey, I'm
                 <span class="name-gradient">JESUN</span>
             </h1>
-            <p class="hero-sub">Building things & learning fast, one step at a time.</p>
+            <p class="hero-sub">Building things &amp; learning fast, one step at a time.</p>
             <div class="hero-actions">
                 <button class="btn-primary" onclick="copyLink()">
                     <i class="fas fa-link"></i> Copy My Link
@@ -807,8 +254,8 @@
                 <div class="profile-ring"></div>
                 <div class="profile-ring-inner"></div>
                 <div class="profile-avatar">
-                    <img src="/icons/android-chrome-192x192.png" alt="JESUN"
-                         onerror="this.style.display='none'; this.parentNode.innerHTML='JS'">
+                    <img src="/icons/IMG-20260508-WA0005.jpg" alt="JESUN"
+                         onerror="if(!this.dataset.f){this.dataset.f=1;this.src='/icons/android-chrome-192x192.png';}else{this.style.display='none';this.parentNode.innerHTML='JS';}">
                 </div>
             </div>
             <div class="hero-reaction-row">
@@ -832,7 +279,7 @@
             </div>
             <div class="stat-block fade-in" style="transition-delay:0.1s">
                 <span class="stat-num" id="emailCount">0</span>
-                <div class="stat-label">Emails Copied</div>
+                <div class="stat-label">Email Clicks</div>
                 <div class="stat-bar-anim"></div>
             </div>
             <div class="stat-block fade-in" style="transition-delay:0.2s">
@@ -878,55 +325,56 @@
         <div class="section-label">Contact</div>
         <h2 class="section-heading">Reach Me <span>Anywhere</span></h2>
         <div class="email-grid">
-            <div class="email-card fade-in" onclick="copyEmail('jesun.08.official@email.com', this)">
-                <div class="email-left">
-                    <div class="email-ico" style="color:#667eea"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <div class="email-type">EMAIL</div>
-                        <div class="email-addr">jesun.08.official@email.com</div>
+            <div class="email-card fade-in">
+                <a class="email-main" href="mailto:jesun.08.official@email.com?subject=Hello%20JESUN" onclick="countEmail()" aria-label="Write an email to jesun.08.official@email.com">
+                    <div class="email-left">
+                        <div class="email-ico" style="color:#667eea"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="email-type">EMAIL</div>
+                            <div class="email-addr">jesun.08.official@email.com</div>
+                        </div>
                     </div>
-                </div>
-                <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                </a>
+                <button class="copy-btn" onclick="copyEmail('jesun.08.official@email.com', this)" aria-label="Copy jesun.08.official@email.com" title="Copy email"><i class="fas fa-copy"></i></button>
             </div>
-            <div class="email-card fade-in" style="transition-delay:0.1s" onclick="copyEmail('jesun.08.official@gmail.com', this)">
-                <div class="email-left">
-                    <div class="email-ico" style="color:#EA4335"><i class="fab fa-google"></i></div>
-                    <div>
-                        <div class="email-type">GMAIL</div>
-                        <div class="email-addr">jesun.08.official@gmail.com</div>
+            <div class="email-card fade-in" style="transition-delay:0.1s">
+                <a class="email-main" href="mailto:jesun.08.official@gmail.com?subject=Hello%20JESUN" onclick="countEmail()" aria-label="Write an email to jesun.08.official@gmail.com">
+                    <div class="email-left">
+                        <div class="email-ico" style="color:#EA4335"><i class="fab fa-google"></i></div>
+                        <div>
+                            <div class="email-type">GMAIL</div>
+                            <div class="email-addr">jesun.08.official@gmail.com</div>
+                        </div>
                     </div>
-                </div>
-                <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                </a>
+                <button class="copy-btn" onclick="copyEmail('jesun.08.official@gmail.com', this)" aria-label="Copy jesun.08.official@gmail.com" title="Copy email"><i class="fas fa-copy"></i></button>
             </div>
-            <div class="email-card fade-in" style="transition-delay:0.15s" onclick="copyEmail('jesun.08.official@icloud.com', this)">
-                <div class="email-left">
-                    <div class="email-ico" style="color:#007AFF"><i class="fab fa-apple"></i></div>
-                    <div>
-                        <div class="email-type">ICLOUD</div>
-                        <div class="email-addr">jesun.08.official@icloud.com</div>
+            <div class="email-card fade-in" style="transition-delay:0.15s">
+                <a class="email-main" href="mailto:jesun.08.official@icloud.com?subject=Hello%20JESUN" onclick="countEmail()" aria-label="Write an email to jesun.08.official@icloud.com">
+                    <div class="email-left">
+                        <div class="email-ico" style="color:#007AFF"><i class="fab fa-apple"></i></div>
+                        <div>
+                            <div class="email-type">ICLOUD</div>
+                            <div class="email-addr">jesun.08.official@icloud.com</div>
+                        </div>
                     </div>
-                </div>
-                <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                </a>
+                <button class="copy-btn" onclick="copyEmail('jesun.08.official@icloud.com', this)" aria-label="Copy jesun.08.official@icloud.com" title="Copy email"><i class="fas fa-copy"></i></button>
             </div>
-            <div class="email-card fade-in" style="transition-delay:0.2s" onclick="copyEmail('jesun.08.official@outlook.com', this)">
-                <div class="email-left">
-                    <div class="email-ico" style="color:#0078D7"><i class="fab fa-microsoft"></i></div>
-                    <div>
-                        <div class="email-type">OUTLOOK</div>
-                        <div class="email-addr">jesun.08.official@outlook.com</div>
+            <div class="email-card fade-in" style="transition-delay:0.2s">
+                <a class="email-main" href="mailto:jesun.08.official@outlook.com?subject=Hello%20JESUN" onclick="countEmail()" aria-label="Write an email to jesun.08.official@outlook.com">
+                    <div class="email-left">
+                        <div class="email-ico" style="color:#0078D7"><i class="fab fa-microsoft"></i></div>
+                        <div>
+                            <div class="email-type">OUTLOOK</div>
+                            <div class="email-addr">jesun.08.official@outlook.com</div>
+                        </div>
                     </div>
-                </div>
-                <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                </a>
+                <button class="copy-btn" onclick="copyEmail('jesun.08.official@outlook.com', this)" aria-label="Copy jesun.08.official@outlook.com" title="Copy email"><i class="fas fa-copy"></i></button>
             </div>
         </div>
     </section>
-
-    <!-- COPY LINK -->
-    <div class="copy-link-wrap">
-        <button class="btn-primary" id="copyLinkBtn" onclick="copyLink()">
-            <i class="fas fa-link"></i> Copy Website Link
-        </button>
-    </div>
 
     <!-- SOCIAL -->
     <section class="section" id="social">
@@ -947,40 +395,61 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
     <script>
+    // ─── SUPABASE (shared stats for everyone) ───
+    const SB_URL = 'https://throxnfbxjkzgzkvxoae.supabase.co';
+    const SB_KEY = 'sb_publishable_DovFXIcBUom4eSXP0mJGEg_WgNuI49o';
+    let sb = null;
+    try { sb = supabase.createClient(SB_URL, SB_KEY); } catch (e) {}
+
     // ─── SOCIAL DATA ───
     const SOCIALS = [
-        { name:"YouTube Profile",       icon:"fab fa-youtube",          url:"https://www.youtube.com/@JESUN_08_OFFICIAL", active:true },
-        { name:"Facebook Profile",      icon:"fab fa-facebook",         url:"https://www.facebook.com/JESUN.08.OFFICIAL",  active:true },
-        { name:"Facebook Page",         icon:"fas fa-flag",             url:"https://www.facebook.com/JESUN0008OFFICIAL",  active:true },
-        { name:"Instagram Profile",     icon:"fab fa-instagram",        url:"https://www.instagram.com/jesun_08_/",         active:true },
-        { name:"Threads Profile",               icon:"fab fa-threads",          url:"https://www.threads.net/@jesun_08_",           active:true },
-        { name:"TikTok Profile",                icon:"fab fa-tiktok",           url:"https://www.tiktok.com/@jesun_08_",            active:true },
-        { name:"X (Twitter) Profile",           icon:"fab fa-x-twitter",        url:"https://x.com/JESUN_08_",                     active:true },
+        { name:"YouTube Profile",     icon:"fab fa-youtube",   url:"https://www.youtube.com/@JESUN_08_OFFICIAL", active:true },
+        { name:"Facebook Profile",    icon:"fab fa-facebook",  url:"https://www.facebook.com/JESUN.08.OFFICIAL", active:true },
+        { name:"Facebook Page",       icon:"fas fa-flag",      url:"https://www.facebook.com/JESUN0008OFFICIAL", active:true },
+        { name:"Instagram Profile",   icon:"fab fa-instagram", url:"https://www.instagram.com/jesun_08_/",       active:true },
+        { name:"Threads Profile",     icon:"fab fa-threads",   url:"https://www.threads.net/@jesun_08_",         active:true },
+        { name:"TikTok Profile",      icon:"fab fa-tiktok",    url:"https://www.tiktok.com/@jesun_08_",          active:true },
+        { name:"X (Twitter) Profile", icon:"fab fa-x-twitter", url:"https://x.com/JESUN_08_",                    active:true },
     ];
 
     // ─── STATS ───
+    const SITE_URL = 'https://jesun08.github.io/';
     const BIRTHDAY = new Date('2011-06-08');
     let stats = { visitors:0, emails:0, links:0, likes:0, hearts:0 };
+    let last = {};
     let reactions = { liked:false, hearted:false };
 
-    function loadStats() {
-        const s = localStorage.getItem('jesun_stats_v2');
-        if (s) stats = JSON.parse(s);
-        const r = localStorage.getItem('jesun_reactions');
-        if (r) reactions = JSON.parse(r);
-
-        if (!sessionStorage.getItem('visited')) {
-            stats.visitors++;
-            sessionStorage.setItem('visited','1');
-            save();
-        }
+    async function loadStats() {
+        try { const r = localStorage.getItem('jesun_reactions'); if (r) reactions = JSON.parse(r); } catch (e) {}
         render();
+        if (sb) {
+            try {
+                const { data } = await sb.from('site_stats').select('name,value');
+                (data || []).forEach(row => {
+                    if (row.name in stats) { stats[row.name] = Number(row.value); last[row.name] = Number(row.value); }
+                });
+            } catch (e) {}
+        }
+        try {
+            if (!sessionStorage.getItem('visited')) { stats.visitors++; sessionStorage.setItem('visited', '1'); }
+        } catch (e) {}
+        save();
     }
 
+    // Every +1 is sent to Supabase; the number that comes back is the real total
     function save() {
-        localStorage.setItem('jesun_stats_v2', JSON.stringify(stats));
         render();
+        if (!sb) return;
+        Object.keys(stats).forEach(k => {
+            if (stats[k] > (last[k] || 0)) {
+                last[k] = stats[k];
+                sb.rpc('bump_stat', { stat: k }).then(({ data, error }) => {
+                    if (!error && data != null) { stats[k] = Number(data); last[k] = Number(data); render(); }
+                });
+            }
+        });
     }
 
     function render() {
@@ -992,9 +461,9 @@
 
         const lb = document.getElementById('likeBtn');
         const hb = document.getElementById('heartBtn');
-        if (reactions.liked)   { lb.classList.add('reacted'); lb.title="Already liked!"; }
+        if (reactions.liked)   { lb.classList.add('reacted'); lb.title = "Already liked!"; }
         else                   { lb.classList.remove('reacted'); }
-        if (reactions.hearted) { hb.classList.add('reacted'); hb.title="Already hearted!"; }
+        if (reactions.hearted) { hb.classList.add('reacted'); hb.title = "Already hearted!"; }
         else                   { hb.classList.remove('reacted'); }
     }
 
@@ -1014,7 +483,7 @@
     document.getElementById('likeBtn').addEventListener('click', () => {
         if (reactions.liked) { toast('Already liked! 👍'); return; }
         stats.likes++; reactions.liked = true;
-        localStorage.setItem('jesun_reactions', JSON.stringify(reactions));
+        try { localStorage.setItem('jesun_reactions', JSON.stringify(reactions)); } catch (e) {}
         save();
         burst();
         toast('Thanks for liking! 👍');
@@ -1023,31 +492,36 @@
     document.getElementById('heartBtn').addEventListener('click', () => {
         if (reactions.hearted) { toast('Already hearted! ❤️'); return; }
         stats.hearts++; reactions.hearted = true;
-        localStorage.setItem('jesun_reactions', JSON.stringify(reactions));
+        try { localStorage.setItem('jesun_reactions', JSON.stringify(reactions)); } catch (e) {}
         save();
         burst();
         toast('Thanks for the heart! ❤️');
     });
 
     function burst() {
-        confetti({ particleCount:90, spread:70, origin:{y:0.5}, colors:['#c84bff','#ff4b8b','#4bf0ff','#ffd166'] });
+        if (typeof confetti === 'function') confetti({ particleCount:90, spread:70, origin:{y:0.5}, colors:['#c84bff','#ff4b8b','#4bf0ff','#ffd166'] });
     }
 
     // ─── COPY FUNCTIONS ───
+    function copyText(text) {
+        const p = navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject();
+        p.catch(() => fallbackCopy(text));
+    }
+
+    function countEmail() { stats.emails++; save(); playSound(800); }
+
     function copyEmail(email, el) {
-        navigator.clipboard.writeText(email).catch(() => fallbackCopy(email));
-        if (el) { el.style.borderColor = 'rgba(75,240,255,0.5)'; setTimeout(() => el.style.borderColor = '', 800); }
+        copyText(email);
+        const card = el && el.closest('.email-card');
+        if (card) { card.style.borderColor = 'rgba(75,240,255,0.5)'; setTimeout(() => card.style.borderColor = '', 800); }
         stats.emails++; save();
         toast('Email copied! 📋');
         playSound(800);
     }
 
     function copyLink() {
-        const url = 'https://jesun08.github.io/';
-        navigator.clipboard.writeText(url).catch(() => fallbackCopy(url));
+        copyText(SITE_URL);
         toast('Link copied! 🔗');
-        const btn = document.getElementById('copyLinkBtn');
-        if (btn) { btn.innerHTML = '<i class="fas fa-check"></i> Copied!'; setTimeout(() => { btn.innerHTML = '<i class="fas fa-link"></i> Copy Website Link'; }, 2000); }
         playSound(1000);
     }
 
@@ -1081,7 +555,7 @@
             g.gain.setValueAtTime(0.25, ac.currentTime);
             g.gain.exponentialRampToValueAtTime(0.01, ac.currentTime + 0.12);
             o.start(ac.currentTime); o.stop(ac.currentTime + 0.12);
-        } catch(e) {}
+        } catch (e) {}
     }
 
     // ─── SOCIAL RENDER ───
@@ -1128,28 +602,16 @@
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     }
 
-    // ─── LIVE VISITOR (SIMULATED) ───
+    // ─── LIVE VISITORS (real, via Supabase Realtime Presence) ───
     function liveSim() {
-        const base = Math.floor(Math.random() * 12) + 1;
-        document.getElementById('liveCount').textContent = base;
-        setInterval(() => {
-            const v = Math.max(1, base + Math.floor(Math.random() * 5) - 2);
-            document.getElementById('liveCount').textContent = v;
-        }, 8000);
-    }
-
-    // ─── ICON FALLBACK ───
-    function fixIcons() {
-        ['fa-threads','fa-x-twitter','fa-people-group'].forEach(cls => {
-            document.querySelectorAll('.' + cls).forEach(icon => {
-                const style = window.getComputedStyle(icon);
-                if (!icon.offsetHeight || style.display === 'none') {
-                    icon.style.fontFamily = 'Arial, sans-serif';
-                    icon.style.fontWeight = 'bold';
-                    icon.textContent = cls === 'fa-x-twitter' ? '𝕏' : cls === 'fa-threads' ? '@' : '👥';
-                }
-            });
-        });
+        if (!sb) return;
+        try {
+            const key = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Math.random());
+            const ch = sb.channel('jesun-live', { config: { presence: { key } } });
+            ch.on('presence', { event: 'sync' }, () => {
+                document.getElementById('liveCount').textContent = Math.max(1, Object.keys(ch.presenceState()).length);
+            }).subscribe(status => { if (status === 'SUBSCRIBED') ch.track({ at: Date.now() }); });
+        } catch (e) {}
     }
 
     // ─── INIT ───
@@ -1158,7 +620,7 @@
         calcAge();
         renderSocials();
         liveSim();
-        setTimeout(() => { observeAll(); fixIcons(); }, 100);
+        setTimeout(observeAll, 100);
         document.body.style.opacity = '0';
         setTimeout(() => { document.body.style.transition = 'opacity 0.4s'; document.body.style.opacity = '1'; }, 50);
     });
@@ -1166,7 +628,7 @@
     // ─── PWA ───
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js').catch(() => {});
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
     }
     </script>
