@@ -1,7 +1,9 @@
 # JESUN
 
 **I Don't Explain, I Show The Results. 💥**
+
 Builder · Editor · Programmer · Tech Grinder
+
 Building things & learning fast, one step at a time.
 
 🌐 **Live site:** [jesun08.github.io](https://jesun08.github.io/)
