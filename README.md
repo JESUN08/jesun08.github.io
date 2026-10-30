@@ -25,13 +25,13 @@ Building things & learning fast, one step at a time.
 | Platform | Link |
 |---|---|
 | YouTube Profile | [@JESUN_08_OFFICIAL](https://www.youtube.com/@JESUN_08_OFFICIAL) |
-| Facebook Profile | [JESUN.08.OFFICIAL](https://www.facebook.com/JESUN.08.OFFICIAL) |
-| Facebook Page | [JESUN0008OFFICIAL](https://www.facebook.com/JESUN0008OFFICIAL) |
+| Facebook Profile | [@JESUN.08.OFFICIAL](https://www.facebook.com/JESUN.08.OFFICIAL) |
+| Facebook Page | [@JESUN0008OFFICIAL](https://www.facebook.com/JESUN0008OFFICIAL) |
 | Instagram Profile | [@jesun_08_](https://www.instagram.com/jesun_08_/) |
 | Threads Profile | [@jesun_08_](https://www.threads.net/@jesun_08_) |
 | TikTok Profile | [@jesun_08_](https://www.tiktok.com/@jesun_08_) |
 | X (Twitter) Profile | [@JESUN_08_](https://x.com/JESUN_08_) |
-| Whatsapp Profile | [JESUN_08_](https://wa.me/JESUN_08_) |
+| Whatsapp Profile | [@JESUN_08_](https://wa.me/JESUN_08_) |
 
 ## Tech stack
 
@@ -49,5 +49,6 @@ Building things & learning fast, one step at a time.
 | `manifest.json` | PWA install settings and icons |
 | `sw.js` | Service worker (offline and fast updates) |
 | `icons/` | Favicons and app icons |
+
 
 © JESUN
