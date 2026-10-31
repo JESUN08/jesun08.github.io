@@ -157,6 +157,18 @@
         .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(80px); background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:white; padding:14px 28px; border-radius:50px; font-weight:600; font-size:0.95rem; display:flex; align-items:center; gap:10px; z-index:9999; opacity:0; transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space:nowrap; box-shadow:0 10px 40px rgba(200,75,255,0.4); }
         .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
+        /* PROJECTS + EXTRA STATS */
+        .project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+        .project-card { display:flex; flex-direction:column; gap:10px; padding:24px; border-radius:20px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; transition:all 0.3s; box-shadow:var(--shadow); }
+        .project-card:hover { border-color:rgba(200,75,255,0.5); transform:translateY(-3px); background:rgba(200,75,255,0.07); }
+        .project-tag { align-self:flex-start; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent1); background:rgba(200,75,255,0.12); border:1px solid rgba(200,75,255,0.3); border-radius:30px; padding:3px 12px; }
+        .project-card h3 { font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:700; }
+        .project-card p { color:var(--muted); font-size:0.92rem; flex:1; }
+        .project-go { font-weight:600; font-size:0.88rem; color:var(--accent1); }
+        .stat-num.small { font-size:1.7rem; line-height:1.3; min-height:2.2rem; }
+        .stats-inner.second { border-top:1px solid var(--border); grid-template-columns:repeat(2,1fr); }
+        @media (max-width:900px) { .project-grid { grid-template-columns:1fr; } }
+
         /* THEMES */
         [data-theme="dark"] { --bg:#000000; --bg2:#000000; --bg3:#0b0b10; --accent1:#a855f7; --accent2:#ec4899; --accent3:#22d3ee; --card:rgba(255,255,255,0.06); --border:rgba(255,255,255,0.13); --nav-bg:rgba(0,0,0,0.88); --stats-bg:#050507; --soc-bg:linear-gradient(135deg,#36194c,#451a32); --soc-border:#6b2a8f; --bday-bg:#0a0a10; --bday-border:rgba(168,85,247,0.4); }
         [data-theme="dark"] .orb { opacity:0.25; }
@@ -216,6 +228,7 @@
         <div class="nav-logo">JESUN</div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#projects">Work</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#social">Social</a></li>
             <li><a href="#stats">Stats</a></li>
@@ -293,6 +306,18 @@
                 <div class="stat-bar-anim"></div>
             </div>
         </div>
+        <div class="stats-inner second">
+            <div class="stat-block fade-in">
+                <span class="stat-num" id="todayCount">0</span>
+                <div class="stat-label">Visitors Today</div>
+                <div class="stat-bar-anim"></div>
+            </div>
+            <div class="stat-block fade-in" style="transition-delay:0.1s">
+                <span class="stat-num small" id="topLink">—</span>
+                <div class="stat-label">Most Clicked Link</div>
+                <div class="stat-bar-anim"></div>
+            </div>
+        </div>
     </div>
 
     <!-- BIRTHDAY -->
@@ -319,6 +344,13 @@
             </div>
         </div>
     </div>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+        <div class="section-label">Work</div>
+        <h2 class="section-heading">Projects <span>&amp; Edits</span></h2>
+        <div class="project-grid" id="projectGrid"></div>
+    </section>
 
     <!-- EMAILS -->
     <section class="section" id="contact">
@@ -405,14 +437,22 @@
 
     // ─── SOCIAL DATA ───
     const SOCIALS = [
-        { name:"YouTube Profile",     icon:"fab fa-youtube",   url:"https://www.youtube.com/@JESUN_08_OFFICIAL", active:true },
-        { name:"Facebook Profile",    icon:"fab fa-facebook",  url:"https://www.facebook.com/JESUN.08.OFFICIAL", active:true },
-        { name:"Facebook Page",       icon:"fas fa-flag",      url:"https://www.facebook.com/JESUN0008OFFICIAL", active:true },
-        { name:"Instagram Profile",   icon:"fab fa-instagram", url:"https://www.instagram.com/jesun_08_/",       active:true },
-        { name:"Threads Profile",     icon:"fab fa-threads",   url:"https://www.threads.net/@jesun_08_",         active:true },
-        { name:"TikTok Profile",      icon:"fab fa-tiktok",    url:"https://www.tiktok.com/@jesun_08_",          active:true },
-        { name:"X (Twitter) Profile", icon:"fab fa-x-twitter", url:"https://x.com/JESUN_08_",                    active:true },
-        { name:"Whatsapp Profile",    icon:"fab fa-whatsapp",  url:"https://wa.me/JESUN_08_",                    active:true },
+        { key:"youtube",           name:"YouTube Profile",     icon:"fab fa-youtube",            url:"https://www.youtube.com/@JESUN_08_OFFICIAL", active:true },
+        { key:"facebook_profile",  name:"Facebook Profile",    icon:"fab fa-facebook",           url:"https://www.facebook.com/JESUN.08.OFFICIAL", active:true },
+        { key:"messenger_profile", name:"Messenger Profile",   icon:"fab fa-facebook-messenger", url:"https://m.me/JESUN.08.OFFICIAL",             active:true },
+        { key:"facebook_page",     name:"Facebook Page",       icon:"fas fa-flag",               url:"https://www.facebook.com/JESUN0008OFFICIAL", active:true },
+        { key:"messenger_page",    name:"Messenger Page",      icon:"fab fa-facebook-messenger", url:"https://m.me/JESUN0008OFFICIAL",             active:true },
+        { key:"instagram",         name:"Instagram Profile",   icon:"fab fa-instagram",          url:"https://www.instagram.com/jesun_08_/",       active:true },
+        { key:"threads",           name:"Threads Profile",     icon:"fab fa-threads",            url:"https://www.threads.net/@jesun_08_",         active:true },
+        { key:"tiktok",            name:"TikTok Profile",      icon:"fab fa-tiktok",             url:"https://www.tiktok.com/@jesun_08_",          active:true },
+        { key:"x",                 name:"X (Twitter) Profile", icon:"fab fa-x-twitter",          url:"https://x.com/JESUN_08_",                    active:true },
+        { key:"whatsapp",          name:"WhatsApp Profile",    icon:"fab fa-whatsapp",           copy:"@JESUN_08_",                              active:true },
+    ];
+
+    // ─── PROJECTS & EDITS (edit this list to add more; keys project_1 ... project_6) ───
+    const PROJECTS = [
+        { key:"project_1", tag:"Edit", title:"My Edits", desc:"Videos I edit and publish. Watch the results on my channel.", url:"https://www.youtube.com/@JESUN_08_OFFICIAL" },
+        { key:"project_2", tag:"Code", title:"Code & Projects", desc:"Things I build and break while learning to program.", url:"https://github.com/JESUN08" },
     ];
 
     // ─── STATS ───
@@ -422,19 +462,40 @@
     let last = {};
     let reactions = { liked:false, hearted:false };
 
+    const extras = {};   // per-day, per-link and per-project counters
+    const todayKey = () => 'day_' + new Date().toISOString().slice(0, 10).replace(/-/g, '');
+
+    function applyRow(name, v) {
+        if (name in stats) { stats[name] = v; last[name] = v; } else { extras[name] = v; }
+        render();
+    }
+
+    function bumpKey(k) {
+        if (!sb) return;
+        sb.rpc('bump_stat', { stat: k }).then(({ data, error }) => {
+            if (!error && data != null) { extras[k] = Number(data); render(); }
+        });
+    }
+
     async function loadStats() {
-        try { const r = localStorage.getItem('jesun_reactions'); if (r) reactions = JSON.parse(r); } catch (e) {}
+        try { const r = localStorage.getItem('jesun_reactions_v2'); if (r) reactions = JSON.parse(r); } catch (e) {}
         render();
         if (sb) {
             try {
                 const { data } = await sb.from('site_stats').select('name,value');
                 (data || []).forEach(row => {
-                    if (row.name in stats) { stats[row.name] = Number(row.value); last[row.name] = Number(row.value); }
+                    const v = Number(row.value);
+                    if (row.name in stats) { stats[row.name] = v; last[row.name] = v; } else { extras[row.name] = v; }
                 });
+                // live push: every change in the database shows up for everyone instantly
+                sb.channel('site-stats-live')
+                  .on('postgres_changes', { event: '*', schema: 'public', table: 'site_stats' }, p => {
+                      if (p.new && p.new.name) applyRow(p.new.name, Number(p.new.value));
+                  }).subscribe();
             } catch (e) {}
         }
         try {
-            if (!sessionStorage.getItem('visited')) { stats.visitors++; sessionStorage.setItem('visited', '1'); }
+            if (!sessionStorage.getItem('visited')) { stats.visitors++; sessionStorage.setItem('visited', '1'); bumpKey(todayKey()); }
         } catch (e) {}
         save();
     }
@@ -466,6 +527,17 @@
         else                   { lb.classList.remove('reacted'); }
         if (reactions.hearted) { hb.classList.add('reacted'); hb.title = "Already hearted!"; }
         else                   { hb.classList.remove('reacted'); }
+
+        // extra stats
+        const t = document.getElementById('todayCount');
+        if (t) t.textContent = extras[todayKey()] || 0;
+        const m = document.getElementById('topLink');
+        if (m) {
+            let best = null, bv = 0;
+            SOCIALS.forEach(s => { const v = extras['click_' + s.key] || 0; if (v > bv) { bv = v; best = s; } });
+            m.textContent = best ? best.name.replace(' Profile', '') : '—';
+        }
+        document.querySelectorAll('.project-clicks').forEach(e => { e.textContent = extras[e.dataset.key] || 0; });
     }
 
     // ─── AGE + COUNTDOWN ───
@@ -484,7 +556,7 @@
     document.getElementById('likeBtn').addEventListener('click', () => {
         if (reactions.liked) { toast('Already liked! 👍'); return; }
         stats.likes++; reactions.liked = true;
-        try { localStorage.setItem('jesun_reactions', JSON.stringify(reactions)); } catch (e) {}
+        try { localStorage.setItem('jesun_reactions_v2', JSON.stringify(reactions)); } catch (e) {}
         save();
         burst();
         toast('Thanks for liking! 👍');
@@ -493,7 +565,7 @@
     document.getElementById('heartBtn').addEventListener('click', () => {
         if (reactions.hearted) { toast('Already hearted! ❤️'); return; }
         stats.hearts++; reactions.hearted = true;
-        try { localStorage.setItem('jesun_reactions', JSON.stringify(reactions)); } catch (e) {}
+        try { localStorage.setItem('jesun_reactions_v2', JSON.stringify(reactions)); } catch (e) {}
         save();
         burst();
         toast('Thanks for the heart! ❤️');
@@ -563,17 +635,25 @@
     function renderSocials() {
         const grid = document.getElementById('socialGrid');
         SOCIALS.forEach((s, i) => {
-            const el = document.createElement(s.active ? 'a' : 'div');
+            const el = document.createElement(s.url ? 'a' : 'div');
             el.className = `social-card fade-in ${s.active ? 'active' : 'soon'}`;
             el.style.transitionDelay = (i * 0.04) + 's';
 
-            if (s.active) {
+            if (s.url) {
                 el.href = s.url;
                 el.target = '_blank';
                 el.rel = 'noopener noreferrer';
-                el.addEventListener('click', () => { stats.links++; save(); playSound(600); });
-            } else {
-                el.addEventListener('click', () => toast(`${s.name} coming soon!`));
+                el.addEventListener('click', () => { stats.links++; save(); bumpKey('click_' + s.key); playSound(600); });
+            } else if (s.copy) {
+                el.style.cursor = 'pointer';
+                el.setAttribute('role', 'button');
+                el.tabIndex = 0;
+                el.addEventListener('click', () => {
+                    copyText(s.copy);
+                    stats.links++; save(); bumpKey('click_' + s.key);
+                    toast(`${s.name.replace(' Profile', '')} username copied! 📋`);
+                    playSound(600);
+                });
             }
 
             el.innerHTML = `
@@ -583,6 +663,21 @@
             `;
             grid.appendChild(el);
         });
+    }
+
+    function renderProjects() {
+        const grid = document.getElementById('projectGrid');
+        PROJECTS.forEach((p, i) => {
+            const a = document.createElement('a');
+            a.className = 'project-card fade-in';
+            a.href = p.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+            a.style.transitionDelay = (i * 0.08) + 's';
+            a.innerHTML = `<span class="project-tag">${p.tag}</span><h3>${p.title}</h3><p>${p.desc}</p>
+                <span class="project-go">Open <i class="fas fa-arrow-right"></i> · <span class="project-clicks" data-key="${p.key}">0</span> clicks</span>`;
+            a.addEventListener('click', () => { bumpKey(p.key); playSound(600); });
+            grid.appendChild(a);
+        });
+        render();
     }
 
     // ─── THEME ───
@@ -620,6 +715,7 @@
         loadStats();
         calcAge();
         renderSocials();
+        renderProjects();
         liveSim();
         setTimeout(observeAll, 100);
         document.body.style.opacity = '0';
