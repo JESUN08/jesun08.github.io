@@ -169,6 +169,57 @@
         .stats-inner.second { border-top:1px solid var(--border); grid-template-columns:repeat(2,1fr); }
         @media (max-width:900px) { .project-grid { grid-template-columns:1fr; } }
 
+        /* MENU + VIEWS */
+        .view[hidden] { display:none !important; }
+        #views { min-height:70vh; }
+        .menu-btn { width:42px; height:42px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); color:var(--text); font-size:1.05rem; cursor:pointer; display:grid; place-items:center; transition:all 0.2s; flex-shrink:0; }
+        .menu-btn:hover { border-color:var(--accent1); color:var(--accent1); }
+        .nav-right { gap:12px; }
+        .drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(3px); opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0s 0.3s; z-index:250; }
+        .drawer-overlay.open { opacity:1; visibility:visible; transition:opacity 0.3s; }
+        .drawer { position:fixed; top:0; right:0; bottom:0; width:min(86vw,340px); background:var(--bg); border-left:1px solid var(--border); z-index:300; transform:translateX(100%); visibility:hidden; transition:transform 0.35s cubic-bezier(0.22,1,0.36,1), visibility 0s 0.35s; display:flex; flex-direction:column; padding:calc(18px + env(safe-area-inset-top)) 18px 24px; box-shadow:-20px 0 60px rgba(0,0,0,0.4); }
+        .drawer.open { transform:none; visibility:visible; transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+        .drawer-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
+        .drawer-close { width:40px; height:40px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); color:var(--text); cursor:pointer; font-size:1rem; }
+        .drawer-links { display:flex; flex-direction:column; gap:6px; }
+        .drawer-links a { display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:14px; color:var(--text); text-decoration:none; font-weight:600; transition:all 0.2s; }
+        .drawer-links a i { width:22px; text-align:center; color:var(--accent1); }
+        .drawer-links a:hover { background:var(--card); }
+        .drawer-links a.active { background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff; }
+        .drawer-links a.active i { color:#fff; }
+        .project-grid.single { grid-template-columns:minmax(0,520px); }
+        .project-card.soon-card { cursor:default; border-style:dashed; }
+        .project-card.soon-card:hover { transform:none; background:var(--card); border-color:var(--border); }
+        .project-icon { font-size:2rem; }
+
+        /* GOALS */
+        .goal-summary { display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin:-20px 0 28px; color:var(--muted); }
+        .goal-summary b { color:var(--text); }
+        .goal-meter { flex:1; min-width:160px; max-width:360px; height:8px; border-radius:8px; background:var(--soft); overflow:hidden; }
+        .goal-meter i { display:block; height:100%; background:linear-gradient(90deg,var(--accent1),var(--accent2)); transition:width 0.8s; }
+        .goal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+        .goal-empty { color:var(--muted); }
+        .goal-card { position:relative; overflow:hidden; display:flex; flex-direction:column; border-radius:22px; color:#f0eeff; background:linear-gradient(145deg,#171722 0%,#07070b 60%,#100a16 100%); border:1px solid rgba(255,209,102,0.3); box-shadow:0 10px 30px rgba(0,0,0,0.35); transition:transform 0.3s; }
+        .goal-card:hover { transform:translateY(-3px); }
+        .goal-card::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,0.05) 50%,transparent 60%); pointer-events:none; }
+        .goal-card.locked { opacity:0.78; }
+        .goal-img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+        .goal-body { padding:20px 22px 22px; display:flex; flex-direction:column; gap:10px; flex:1; }
+        .goal-top { display:flex; justify-content:space-between; align-items:center; gap:10px; min-height:34px; }
+        .goal-amount { font-family:'Syne',sans-serif; font-weight:800; font-size:2rem; line-height:1; background:linear-gradient(135deg,#ffe29a,#ffd166 50%,#c9922b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+        .goal-title { font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem; }
+        .goal-badge { font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:30px; white-space:nowrap; }
+        .goal-badge.done { background:rgba(52,211,153,0.15); color:#34d399; border:1px solid rgba(52,211,153,0.4); }
+        .goal-badge.loading { background:rgba(255,209,102,0.15); color:#ffd166; border:1px solid rgba(255,209,102,0.4); }
+        .goal-badge.locked { background:rgba(255,255,255,0.08); color:#a8a8c0; border:1px solid rgba(255,255,255,0.15); }
+        .goal-bar { height:8px; border-radius:8px; background:rgba(255,255,255,0.1); overflow:hidden; }
+        .goal-bar i { display:block; height:100%; border-radius:8px; background:linear-gradient(90deg,#c84bff,#ff4b8b); transition:width 0.8s; }
+        .goal-card.done .goal-bar i { background:linear-gradient(90deg,#34d399,#10b981); }
+        .goal-meta { display:flex; justify-content:space-between; gap:10px; font-size:0.82rem; color:#a8a8c0; }
+        .goal-text { font-size:0.9rem; color:#cfcde2; }
+        @media (max-width:1100px) { .goal-grid { grid-template-columns:repeat(2,1fr); } }
+        @media (max-width:700px) { .goal-grid { grid-template-columns:1fr; } }
+
         /* THEMES */
         [data-theme="dark"] { --bg:#000000; --bg2:#000000; --bg3:#0b0b10; --accent1:#a855f7; --accent2:#ec4899; --accent3:#22d3ee; --card:rgba(255,255,255,0.06); --border:rgba(255,255,255,0.13); --nav-bg:rgba(0,0,0,0.88); --stats-bg:#050507; --soc-bg:linear-gradient(135deg,#36194c,#451a32); --soc-border:#6b2a8f; --bday-bg:#0a0a10; --bday-border:rgba(168,85,247,0.4); }
         [data-theme="dark"] .orb { opacity:0.25; }
@@ -226,24 +277,37 @@
     <!-- NAV -->
     <nav>
         <div class="nav-logo">JESUN</div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#social">Social</a></li>
-            <li><a href="#stats">Stats</a></li>
-        </ul>
         <div class="nav-right">
             <div class="theme-pills">
                 <button class="theme-pill active" data-t="default">🌙<span class="pl"> Default</span></button>
                 <button class="theme-pill" data-t="dark">🌚<span class="pl"> Dark</span></button>
                 <button class="theme-pill" data-t="light">☀️<span class="pl"> Light</span></button>
             </div>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
+    <!-- SLIDE-OVER MENU -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menu">
+        <div class="drawer-head">
+            <span class="nav-logo">JESUN</span>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="#home" data-view="home"><i class="fas fa-house"></i> Home</a>
+            <a href="#edits" data-view="edits"><i class="fas fa-film"></i> Edits</a>
+            <a href="#code" data-view="code"><i class="fas fa-code"></i> Code &amp; Projects</a>
+            <a href="#goals" data-view="goals"><i class="fas fa-bullseye"></i> Goals</a>
+            <a href="#connect" data-view="connect"><i class="fas fa-share-nodes"></i> Connect</a>
+            <a href="#contact" data-view="contact"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+    </aside>
+
+    <main id="views">
+    <div class="view" id="view-home">
     <!-- HERO -->
-    <section class="hero" id="about">
+    <section class="hero" id="about-sec">
         <div class="hero-left fade-in">
             <div class="hero-bio"><span class="bio-text">I Don't Explain, I Show The Results.</span> 💥</div>
             <div class="hero-tag"><span></span> Builder. Editor. Programmer. Tech Grinder</div>
@@ -256,7 +320,7 @@
                 <button class="btn-primary" onclick="copyLink()">
                     <i class="fas fa-link"></i> Copy My Link
                 </button>
-                <a href="#social" class="btn-ghost">
+                <a href="#connect" class="btn-ghost">
                     <i class="fas fa-share-alt"></i> Find Me Online
                 </a>
             </div>
@@ -283,7 +347,7 @@
     </section>
 
     <!-- STATS BAR -->
-    <div class="stats-bar" id="stats">
+    <div class="stats-bar" id="stats-sec">
         <div class="stats-inner">
             <div class="stat-block fade-in">
                 <span class="stat-num" id="visitorCount">0</span>
@@ -345,15 +409,46 @@
         </div>
     </div>
 
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-        <div class="section-label">Work</div>
-        <h2 class="section-heading">Projects <span>&amp; Edits</span></h2>
-        <div class="project-grid" id="projectGrid"></div>
+    </div>
+
+    <div class="view" id="view-edits" hidden>
+        <section class="section">
+            <div class="section-label">Work</div>
+            <h2 class="section-heading">My <span>Edits</span></h2>
+            <div class="project-grid single" id="workEdits"></div>
+        </section>
+    </div>
+
+    <div class="view" id="view-code" hidden>
+        <section class="section">
+            <div class="section-label">Work</div>
+            <h2 class="section-heading">Code <span>&amp; Projects</span></h2>
+            <div class="project-grid single" id="workCode"></div>
+        </section>
+    </div>
+
+    <div class="view" id="view-goals" hidden>
+        <section class="section">
+            <div class="section-label">Progress</div>
+            <h2 class="section-heading">My <span>Goals</span></h2>
+            <div class="goal-summary" id="goalSummary"></div>
+            <div class="goal-grid" id="goalGrid"></div>
+        </section>
+    </div>
+
+    <div class="view" id="view-connect" hidden>
+    <!-- SOCIAL -->
+    <section class="section" id="social-sec">
+        <div class="section-label">Connect</div>
+        <h2 class="section-heading">Find Me <span>Online</span></h2>
+        <div class="social-grid" id="socialGrid"></div>
     </section>
 
+    </div>
+
+    <div class="view" id="view-contact" hidden>
     <!-- EMAILS -->
-    <section class="section" id="contact">
+    <section class="section" id="contact-sec">
         <div class="section-label">Contact</div>
         <h2 class="section-heading">Reach Me <span>Anywhere</span></h2>
         <div class="email-grid">
@@ -408,12 +503,8 @@
         </div>
     </section>
 
-    <!-- SOCIAL -->
-    <section class="section" id="social">
-        <div class="section-label">Connect</div>
-        <h2 class="section-heading">Find Me <span>Online</span></h2>
-        <div class="social-grid" id="socialGrid"></div>
-    </section>
+    </div>
+    </main>
 
     <!-- FOOTER -->
     <footer>
@@ -446,13 +537,13 @@
         { key:"threads",           name:"Threads Profile",     icon:"fab fa-threads",            url:"https://www.threads.net/@jesun_08_",         active:true },
         { key:"tiktok",            name:"TikTok Profile",      icon:"fab fa-tiktok",             url:"https://www.tiktok.com/@jesun_08_",          active:true },
         { key:"x",                 name:"X (Twitter) Profile", icon:"fab fa-x-twitter",          url:"https://x.com/JESUN_08_",                    active:true },
-        { key:"whatsapp",          name:"WhatsApp Profile",    icon:"fab fa-whatsapp",           url:"https://wa.me/JESUN_08_",                    active:true },
+        { key:"whatsapp",          name:"WhatsApp Profile",    icon:"fab fa-whatsapp",           url:"https://wa.me/JESUN_08_", active:true },
     ];
 
-    // ─── PROJECTS & EDITS (edit this list to add more; keys project_1 ... project_6) ───
-    const PROJECTS = [
-        { key:"project_1", tag:"Edit", title:"My Edits", desc:"Videos I edit and publish. Watch the results on my channel.", url:"https://www.youtube.com/@JESUN_08_OFFICIAL" },
-        { key:"project_2", tag:"Code", title:"Code & Projects", desc:"Things I build and break while learning to program.", url:"https://github.com/JESUN08" },
+    // ─── EDITS + CODE (paste a Google Drive folder link into url when ready; empty = "Coming soon") ───
+    const WORK = [
+        { key:"project_1", target:"workEdits", icon:"🎬", tag:"Edits", title:"My Edits", desc:"My edits will live in a Google Drive folder you can open right here.", url:"" },
+        { key:"project_2", target:"workCode",  icon:"💻", tag:"Code",  title:"Code & Projects", desc:"My code and projects will be in a Google Drive folder you can open right here.", url:"" },
     ];
 
     // ─── STATS ───
@@ -665,16 +756,19 @@
         });
     }
 
-    function renderProjects() {
-        const grid = document.getElementById('projectGrid');
-        PROJECTS.forEach((p, i) => {
-            const a = document.createElement('a');
-            a.className = 'project-card fade-in';
-            a.href = p.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    function renderWork() {
+        WORK.forEach((p, i) => {
+            const grid = document.getElementById(p.target);
+            if (!grid) return;
+            const live = !!p.url;
+            const a = document.createElement(live ? 'a' : 'div');
+            a.className = 'project-card fade-in' + (live ? '' : ' soon-card');
             a.style.transitionDelay = (i * 0.08) + 's';
-            a.innerHTML = `<span class="project-tag">${p.tag}</span><h3>${p.title}</h3><p>${p.desc}</p>
-                <span class="project-go">Open <i class="fas fa-arrow-right"></i> · <span class="project-clicks" data-key="${p.key}">0</span> clicks</span>`;
-            a.addEventListener('click', () => { bumpKey(p.key); playSound(600); });
+            if (live) { a.href = p.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+            a.innerHTML = `<span class="project-icon">${p.icon}</span><span class="project-tag">${live ? p.tag : 'Coming soon'}</span><h3>${p.title}</h3><p>${p.desc}</p>` +
+                (live ? `<span class="project-go">Open folder <i class="fas fa-arrow-right"></i> · <span class="project-clicks" data-key="${p.key}">0</span> clicks</span>`
+                      : `<span class="project-go" style="color:var(--muted)">🔒 Coming soon</span>`);
+            if (live) a.addEventListener('click', () => { bumpKey(p.key); playSound(600); });
             grid.appendChild(a);
         });
         render();
@@ -710,13 +804,96 @@
         } catch (e) {}
     }
 
+    // ─── MENU + VIEWS ───
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('drawerOverlay');
+    function openMenu() {
+        drawer.classList.add('open'); overlay.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false'); menuBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+        drawer.classList.remove('open'); overlay.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    menuBtn.addEventListener('click', openMenu);
+    overlay.addEventListener('click', closeMenu);
+    document.getElementById('drawerClose').addEventListener('click', closeMenu);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    document.querySelectorAll('.drawer-links a').forEach(a => a.addEventListener('click', closeMenu));
+
+    const VIEWS = ['home', 'edits', 'code', 'goals', 'connect', 'contact'];
+    const ALIAS = { about:'home', stats:'home', projects:'code', social:'connect' };
+    function showView(name) {
+        name = ALIAS[name] || name;
+        if (!VIEWS.includes(name)) name = 'home';
+        VIEWS.forEach(v => { const el = document.getElementById('view-' + v); if (el) el.hidden = (v !== name); });
+        document.querySelectorAll('.drawer-links a').forEach(a => a.classList.toggle('active', a.dataset.view === name));
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        if (name === 'goals') loadGoals();
+        closeMenu();
+    }
+    function route() { showView((location.hash || '#home').slice(1)); }
+    window.addEventListener('hashchange', route);
+
+    // ─── GOALS (live from Supabase table "goals") ───
+    function mk(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+    async function loadGoals() {
+        if (!sb) return;
+        try {
+            const { data } = await sb.from('goals').select('*').order('sort');
+            renderGoals(data || []);
+        } catch (e) {}
+    }
+
+    function renderGoals(rows) {
+        const grid = document.getElementById('goalGrid'), sum = document.getElementById('goalSummary');
+        if (!grid || !sum) return;
+        grid.innerHTML = ''; sum.innerHTML = '';
+        if (!rows.length) { grid.appendChild(mk('p', 'goal-empty', 'Goals are coming soon. Check back!')); return; }
+        const done = rows.filter(r => r.status === 'done').length;
+        const label = mk('span'); label.append(mk('b', '', `${done} of ${rows.length}`), ' goals done');
+        const meter = mk('div', 'goal-meter'), fill = mk('i');
+        fill.style.width = Math.round(done / rows.length * 100) + '%'; meter.appendChild(fill);
+        sum.append(label, meter);
+        rows.forEach(g => {
+            const st = ['done', 'loading', 'locked'].includes(g.status) ? g.status : 'locked';
+            const pr = Math.max(0, Math.min(100, Number(g.progress) || 0));
+            const card = mk('div', 'goal-card ' + st);
+            if (g.image_url && /^(https:\/\/|\/)/.test(g.image_url)) {
+                const im = mk('img', 'goal-img'); im.src = g.image_url; im.alt = g.title || 'Goal'; im.loading = 'lazy'; card.appendChild(im);
+            }
+            const body = mk('div', 'goal-body');
+            const top = mk('div', 'goal-top');
+            top.append(mk('div', 'goal-amount', g.amount || ''), mk('span', 'goal-badge ' + st, st === 'done' ? 'Done ✅' : st === 'loading' ? 'Loading ⏳' : 'Locked 🔒'));
+            const bar = mk('div', 'goal-bar'), bi = mk('i'); bi.style.width = pr + '%'; bar.appendChild(bi);
+            const meta = mk('div', 'goal-meta');
+            meta.append(mk('span', '', pr + '%'), mk('span', '', g.done_on ? (st === 'done' ? 'Done · ' : 'Updated · ') + g.done_on : ''));
+            body.append(top, mk('div', 'goal-title', g.title || ''), bar, meta);
+            if (g.details) body.appendChild(mk('p', 'goal-text', g.details));
+            card.appendChild(body);
+            grid.appendChild(card);
+        });
+    }
+
+    function watchGoals() {
+        if (!sb) return;
+        try { sb.channel('goals-live').on('postgres_changes', { event: '*', schema: 'public', table: 'goals' }, loadGoals).subscribe(); } catch (e) {}
+    }
+
     // ─── INIT ───
     document.addEventListener('DOMContentLoaded', () => {
         loadStats();
         calcAge();
         renderSocials();
-        renderProjects();
+        renderWork();
         liveSim();
+        route();
+        loadGoals();
+        watchGoals();
         setTimeout(observeAll, 100);
         document.body.style.opacity = '0';
         setTimeout(() => { document.body.style.transition = 'opacity 0.4s'; document.body.style.opacity = '1'; }, 50);
