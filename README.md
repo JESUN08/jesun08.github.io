@@ -25,10 +25,10 @@ Building things & learning fast, one step at a time.
 | Platform | Link |
 |---|---|
 | YouTube Profile | [@JESUN_08_OFFICIAL](https://www.youtube.com/@JESUN_08_OFFICIAL) |
-| Facebook Profile | [@JESUN.08.OFFICIAL](https://www.facebook.com/JESUN.08.OFFICIAL) |
-| Messenger Profile | [@JESUN.08.OFFICIAL](https://m.me/JESUN.08.OFFICIAL) |
-| Facebook Page | [@JESUN0008OFFICIAL](https://www.facebook.com/JESUN0008OFFICIAL) |
-| Messenger Page | [@JESUN0008OFFICIAL](https://m.me/JESUN0008OFFICIAL) |
+| Facebook Profile | [JESUN.08.OFFICIAL](https://www.facebook.com/JESUN.08.OFFICIAL) |
+| Messenger Profile | [JESUN.08.OFFICIAL](https://m.me/JESUN.08.OFFICIAL) |
+| Facebook Page | [JESUN0008OFFICIAL](https://www.facebook.com/JESUN0008OFFICIAL) |
+| Messenger Page | [JESUN0008OFFICIAL](https://m.me/JESUN0008OFFICIAL) |
 | Instagram Profile | [@jesun_08_](https://www.instagram.com/jesun_08_/) |
 | Threads Profile | [@jesun_08_](https://www.threads.net/@jesun_08_) |
 | TikTok Profile | [@jesun_08_](https://www.tiktok.com/@jesun_08_) |
@@ -52,4 +52,4 @@ Building things & learning fast, one step at a time.
 | `sw.js` | Service worker (offline and fast updates) |
 | `icons/` | Favicons and app icons |
 
-© JESUN
+© @JESUN
